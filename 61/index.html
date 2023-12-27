@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Задание 61</title>
+    <link rel="stylesheet" href="form.css">
+    <style>
+        body{
+            font-family: sans-serif;
+            margin: 0;
+        }
+        *, ::after, ::before {
+            box-sizing: border-box;
+        }
+        .container{
+            max-width: 800px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 50px 0;
+        }
+
+        .grid{
+            display: flex;
+            gap: 20px;
+        }
+    </style>
+</head>
+<body class="container">
+    <div class="grid">
+        <input class="input js-input" type="text">
+        <select class="input input--select js-select">
+            <option selected disabled value="">Выберите машину</option>
+            <option value="1">Машина 1</option>
+            <option value="2">Машина 2</option>
+        </select>
+    </div>
+    <script>
+        // Получаем параметры из URL
+        const searchParams = new URLSearchParams(location.search);
+
+        // Получаем элементы формы
+        const input = document.querySelector('.js-input');
+        const select = document.querySelector('.js-select');
+
+        // Функция для обновления URL-параметров при изменении полей формы
+        function updateSearchParams() {
+            // Обновляем параметры в зависимости от значения input или select
+            searchParams.set('text', input.value);
+            searchParams.set('car_id', select.value);
+
+            // Обновляем адресную строку без перезагрузки страницы
+            history.replaceState(null, '', `?${searchParams.toString()}`);
+        }
+
+        // Повешаем события change на input и select
+        input.addEventListener('change', updateSearchParams);
+        select.addEventListener('change', updateSearchParams);
+
+        // Заполняем поля формы значениями из URL-параметров при загрузке страницы
+        input.value = searchParams.get('text') || '';
+        select.value = searchParams.get('car_id') || '';
+    </script>
+</body>
+</html>

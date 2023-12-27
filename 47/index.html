@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Задание 47</title>
+</head>
+<body>
+    <div id="by-id">Поиск по ID</div>
+    <div class="by-class">Поиск по классу 1</div>
+    <div class="by-class">Поиск по классу 2</div>
+    <article>Поиск по тегу</article>
+
+    <script>
+        // Поиск элемента по ID
+        const byId = document.getElementById('by-id');
+        console.log('getElementById:', byId);
+
+        // Поиск элементов по классу
+        const byClass = document.getElementsByClassName('by-class');
+        console.log('getElementsByClassName:', byClass);
+
+        // Поиск элементов по тегу
+        const byTag = document.getElementsByTagName('article');
+        console.log('getElementsByTagName:', byTag);
+
+        // Поиск с помощью querySelector
+        const querySelector = document.querySelector('#by-id, .by-class, article');
+        console.log('querySelector:', querySelector);
+
+        // Поиск с помощью querySelectorAll
+        const querySelectorAll = document.querySelectorAll('#by-id, .by-class, article');
+        console.log('querySelectorAll:', querySelectorAll);
+    </script>
+</body>
+</html>

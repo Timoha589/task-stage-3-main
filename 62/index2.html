@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Задание 62.2</title>
+    <style>
+        body{
+            font-family: sans-serif;
+            margin: 0;
+        }
+        *, ::after, ::before {
+            box-sizing: border-box;
+        }
+        .container{
+            max-width: 800px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 50px 0;
+        }
+        .grid{
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+
+        <div class="grid">
+            <input class="js-input" type="text">
+            <button class="js-button"> Сохранить </button>
+        </div>
+
+        <hr>
+
+        <h1>Ваше имя <span class="js-name"></span></h1>
+    </div>
+
+    <script>
+        const input = document.querySelector('.js-input');
+        const nameSpan = document.querySelector('.js-name');
+
+        // Функция для сохранения значения в localStorage и его отображения
+        function saveToLocalStorage() {
+            const nameValue = input.value;
+
+            // Создаем объект для сохранения в localStorage
+            const data = { name: nameValue };
+
+            // Сохраняем объект в localStorage
+            localStorage.setItem('userData', JSON.stringify(data));
+
+            // Отображаем сохраненное значение в span
+            nameSpan.textContent = nameValue;
+        }
+
+        // При загрузке страницы проверяем наличие сохраненного значения в localStorage и отображаем его
+        window.addEventListener('DOMContentLoaded', () => {
+            const userData = localStorage.getItem('userData');
+
+            if (userData) {
+                const parsedData = JSON.parse(userData);
+                nameSpan.textContent = parsedData.name;
+            }
+        });
+
+        // Вешаем событие клика на кнопку "Сохранить"
+        const saveButton = document.querySelector('.js-button');
+        saveButton.addEventListener('click', saveToLocalStorage);
+    </script>
+</body>
+</html>
